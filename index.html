@@ -10,6 +10,31 @@
     <form action="https://www.google.com/search" method="GET" target="_blank">
   <input type="text" name="q" placeholder="พิมพ์คำที่ต้องการค้นหา..." required>
   <button type="submit">Search</button>
+  <p>
+  </p>
+  <input type="text" id="urlInput" placeholder="พิมพ์ชื่อโดเมน (เช่น google.com)" autofocus>
+<button onclick="goToWeb()">Go to Web</button>
+
+<script>
+  function goToWeb() {
+    let site = document.getElementById('urlInput').value;
+    
+    // ถ้าผู้ใช้ไม่ได้พิมพ์ http:// หรือ https:// นำหน้า ให้เราเติมให้เอง
+    if (!site.startsWith('http://') && !site.startsWith('https://')) {
+      site = 'https://' + site;
+    }
+    
+    // สั่งให้เบราว์เซอร์เปิดลิงก์นั้น
+    window.location.href = site;
+  }
+
+  // แถม: ทำให้กด Enter ในช่องพิมพ์แล้วไปได้เลย
+  document.getElementById('urlInput').addEventListener('keypress', function (e) {
+    if (e.key === 'Enter') {
+      goToWeb();
+    }
+  });
+</script>
 </form>
 </head>
 <body>
